@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@700&display=swap');
+
+body {
+    margin: 0;
+    padding: 20px;
+    font-family: 'Nunito', sans-serif;
+    background-color: #f58f21;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+section {
+    background: #fff8f0;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #080808;
+}
+
+p, label, li {
+    font-size: 1rem;
+    color: #111111;
+}
+
+button {
+    background-color: #bdb8b8;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #000;
+    transition: background-color 0.2s ease;
+}
+
+button:hover {
+    background-color: #ece9e9; 
+}
+
+input {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    margin-top: 8px;
+}
+
+#resultado, #resultado4, #resultado8 {
+    margin-top: 12px;
+    font-weight: 600;
+}

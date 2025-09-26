@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <link rel="stylesheet" href="style.css">
+    <section id="ex1">
+        <h1>Exercício 01</h1>
+        <p id="paragrafo1">Parágrafo para testar botão e interação com JavaScript.</p>
+        <button id="botao1">Clique em mim</button>
+    </section>
+    <script src="script.js"></script>
+
+    <section id="ex2">
+        <h1>Exercício 02</h1>
+        <h3>Diferença entre var, let e const</h3>
+        <div id="resultado"></div>
+        <button id="botao2">Tentar realizar alterações...</button>
+    </section>
+    <script>
+        var nome = "Ana"; //variaveis
+        let idade = 20;
+        const cidade = "Abaeté";
+
+        //alterar
+        nome = "João";   //funciona
+        idade = 25;      //funciona
+
+        //ver resultado
+        const resultado = document.getElementById("resultado");
+        resultado.innerHTML = `<p><b>var nome:</b> "${nome}" (pode ser alterada)</p>
+            <p><b>let idade:</b> "${idade}" (pode ser alterada)</p>
+            <p><b>const cidade:</b> "${cidade}" (não pode ser alterada)</p>`;
+
+        document.getElementById("botao2").addEventListener("click", () => {
+            try {
+                //tentando alterar const
+                cidade = "Fraiburgo"; //vai gerar erro
+            } catch (erro) {
+                resultado.innerHTML += `<p style="color:red;">Erro ao alterar const!</p>`;
+            }
+        });
+
+        const botao2 = document.getElementById('botao2');
+        botao2.addEventListener('click', () => {
+            try {
+                // tentativa de reatribuir const (vai lançar TypeError)
+                cidade = 'Fraiburgo';
+            } catch (erro) {
+                resultado.innerHTML += `<p style="color: red;"><small>const não aceita reatribuição.</small></p>`;
+            }
+        });
+    </script>
+
+    <section>
+        <h1>Exercício 03</h1>
+        <h2>Lista dinâmica</h2>
+        <ul id="lista"></ul>
+        <input type="text" id="itens" placeholder="Adicionar novo item">
+        <button id="botao3">Adicionar</button>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const itens = document.getElementById('itens');
+                const botao = document.getElementById('botao3');
+                const lista = document.getElementById('lista');
+
+                botao.addEventListener('click', () => {
+                    const valor = itens.value.trim(); //p remover espaços extras
+                    if (valor !== '') {
+                        const item = document.createElement('li'); //criar elemento
+                        item.textContent = valor;
+                        lista.appendChild(item);  //adiciona lista
+                        itens.value = '';    //limpa o campo de texto
+                        itens.focus();
+                    } else {
+                        alert('Digite algum texto antes de adicionar!');
+                    }
+                });
+
+                itens.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        botao.click();
+                    }
+                });
+            });
+        </script>
+    </section>
+
+    <section>
+        <h1>Exercício 04</h1>
+        <label for="idade">Digite sua idade:</label>
+        <input type="number" id="idade" min="0" placeholder="Ex: 20">
+        <button id="botao4">Enviar</button>
+        <div id="resultado4"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const inputIdade = document.getElementById('idade');
+                const botao4 = document.getElementById('botao4');
+                const resultado4 = document.getElementById('resultado4');
+
+                botao4.addEventListener('click', () => {
+                    const idade = parseInt(inputIdade.value); //converte para inteiro
+
+                    if (isNaN(idade)) {
+                        resultado4.textContent = "Por favor, digite um número válido!";
+                        resultado4.style.color = "red";
+                        return;
+                    }
+
+                    if (idade >= 18) {
+                        resultado4.textContent = "Maior de idade!";
+                        resultado4.style.color = "green";
+                        inputIdade.value = '';
+                    } else {
+                        resultado4.textContent = "Menor de idade!";
+                        resultado4.style.color = "orange";
+                        inputIdade.value = '';
+                    }
+                });
+
+                inputIdade.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        botao4.click(); //enviar c/ enter
+                    }
+                });
+            });
+        </script>
+    </section>
+
+    <section>
+        <h1>Exercício 05</h1>
+        <button id="botao5">Clique para mudar a cor de fundo!</button>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botao5 = document.getElementById('botao5');
+
+            botao5.addEventListener('click', () => {
+                document.body.style.backgroundColor = '#002685';
+            });
+        });
+    </script>
+
+    <section>
+        <h1>Exercício 06</h1>
+        <button id="botao6">Clique aqui!</button>
+    </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botao6 = document.getElementById('botao6');
+
+            botao6.addEventListener('click', () => {
+                alert('Alerta! Você clicou no botão e este é um alerta personalizado!');
+            });
+        });
+    </script>
+
+    <section>
+        <h1>Exercício 07</h1>
+        <p id="paragrafo7">Parágrafo que será alterado ao clicar no botão!</p>
+        <button id="botao7">Clique aqui!</button>
+    </section>
+
+    <style>
+        .destaque {
+            /*estilo add e removido*/
+            color: rgb(3, 3, 66);
+            font-size: 2em;
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const paragrafo = document.getElementById('paragrafo7');
+            const botao = document.getElementById('botao7');
+
+            botao.addEventListener('click', () => {
+                if (paragrafo.classList.contains('destaque')) {
+                    paragrafo.classList.remove('destaque');
+                    botao.textContent = 'Adicionar estilo';
+                } else {
+                    paragrafo.classList.add('destaque');
+                    botao.textContent = 'Remover estilo';
+                }
+            });
+        });
+    </script>
+
+    <section>
+        <h1>Exercício 08</h1>
+        <h2>Sorteador da Mega Sena</h2>
+        <button id="botao8">Sortear 6 números</button>
+        <div id="resultado8"></div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const botao = document.getElementById('botao8');
+            const resultado = document.getElementById('resultado8');
+
+            botao.addEventListener('click', () => {
+                const numeros = new Set();
+
+                while (numeros.size < 6) {
+                    const n = Math.floor(Math.random() * 60) + 1; //1 ate 60
+                    numeros.add(n); //sem repetir
+                }
+
+                const sorteados = Array.from(numeros).sort((a, b) => a - b); //array ordenado 
+
+                resultado.textContent = "Números sorteados: " + sorteados.join(", ");
+            });
+        });
+    </script>
+
+    <script src="script.js" defer></script>
+    <!-- *defer* garante que JS só seja executado depois de todo html, para funcionar corretamente! -->
+</body>
+
+</html>
